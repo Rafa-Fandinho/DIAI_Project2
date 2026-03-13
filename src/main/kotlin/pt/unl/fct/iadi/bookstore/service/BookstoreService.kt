@@ -1,4 +1,4 @@
-package org.pt.unl.fct.iadi.bookstore.service
+package pt.unl.fct.iadi.bookstore.service
 
 class BookstoreService {
 }

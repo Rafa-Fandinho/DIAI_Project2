@@ -1,11 +1,13 @@
-package org.pt.unl.fct.iadi.bookstore.domain
+package pt.unl.fct.iadi.bookstore.domain
+import io.swagger.v3.oas.annotations.media.Schema
+import jakarta.validation.constraints.*
 
 data class Review(
     val id: Long,
-    @field:Schema(description = "Rating from 1 to 5", exclusiveMinimum = true, minimum = "1", exclusiveMaximum = true, maximum = "5")
+    @field:Min(1)
+    @field:Max(5)
+    @field:Schema(description = "Rating from 1 to 5")
     val rating: Int,
-    val comment: String
-) {
-}
-
-//Missing value restrictions
+    @field:Size(max = 500)
+    val comment: String?
+)
