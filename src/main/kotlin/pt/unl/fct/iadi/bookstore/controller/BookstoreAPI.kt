@@ -1,5 +1,13 @@
 package org.pt.unl.fct.iadi.bookstore.controller
 
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.Parameter
+import io.swagger.v3.oas.annotations.responses.ApiResponses
+import jakarta.validation.Valid
+import org.pt.unl.fct.iadi.bookstore.domain.Book
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+
 interface BookstoreAPI {
     @Operation(
     summary = "Add a new book to the store",
