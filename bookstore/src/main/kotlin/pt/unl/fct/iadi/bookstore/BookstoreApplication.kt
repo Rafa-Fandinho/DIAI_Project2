@@ -1,4 +1,4 @@
-package pt.unl.fct.iadi.bookstore
+package org.dropproject.samples.bookstore
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class BookstoreApplication
 
 fun main(args: Array<String>) {
-	runApplication<BookstoreApplication>(*args)
+    runApplication<BookstoreApplication>(*args)
 }
