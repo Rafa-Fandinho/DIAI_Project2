@@ -8,14 +8,14 @@ data class Book(
     val isbn: String,
     @field:NotBlank
     @field:Size(min = 1, max = 120)
-    val title: String,
+    var title: String,
     @field:NotBlank
     @field:Size(min = 1, max = 80)
-    val author: String,
+    var author: String,
     @field:Schema(description = "Price must be greater than zero", exclusiveMinimum = true, minimum = "0.0")
-    val price: Double,
+    var price: Double,
     @field:NotBlank
     @field:Pattern(regexp = "https?://.*")
     @field:Schema(description = "URL to the book cover image", example = "https://example.com/book.jpg")
-    val image: String
+    var image: String
 )

@@ -6,10 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="edff44ae-0ea0-45dc-80bd-d34596880595" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookstore/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookstore/src/main/kotlin/pt/unl/fct/iadi/bookstore/controller/BookstoreAPI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/src/main/kotlin/pt/unl/fct/iadi/bookstore/controller/BookstoreAPI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookstore/src/main/kotlin/pt/unl/fct/iadi/bookstore/domain/Book.kt" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/src/main/kotlin/pt/unl/fct/iadi/bookstore/domain/Book.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookstore/src/main/kotlin/pt/unl/fct/iadi/bookstore/domain/Review.kt" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/src/main/kotlin/pt/unl/fct/iadi/bookstore/domain/Review.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/controller/BookstoreAPI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/controller/BookstoreAPI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/controller/dto/BookResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/controller/dto/BookResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/controller/dto/CreateBookRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/controller/dto/CreateBookRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/controller/dto/CreateReviewRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/controller/dto/CreateReviewRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/controller/dto/PatchBookRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/controller/dto/PatchBookRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/controller/dto/PatchReviewRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/controller/dto/PatchReviewRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/controller/dto/ReplaceBookRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/controller/dto/ReplaceBookRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/controller/dto/ReplaceReviewRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/controller/dto/ReplaceReviewRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/controller/dto/ReviewResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/controller/dto/ReviewResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/domain/Book.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/domain/Book.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/domain/Review.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/pt/unl/fct/iadi/bookstore/domain/Review.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +53,7 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "Spring Boot.BookstoreApplication.executor": "Run",
     "git-widget-placeholder": "main",
@@ -85,6 +93,7 @@
       <option name="presentableId" value="Default" />
       <updated>1773364343211</updated>
       <workItem from="1773364347760" duration="4793000" />
+      <workItem from="1773589866265" duration="3739000" />
     </task>
     <servers />
   </component>

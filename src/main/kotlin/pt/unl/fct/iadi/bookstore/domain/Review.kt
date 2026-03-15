@@ -7,7 +7,7 @@ data class Review(
     @field:Min(1)
     @field:Max(5)
     @field:Schema(description = "Rating from 1 to 5")
-    val rating: Int,
+    var rating: Int,
     @field:Size(max = 500)
-    val comment: String?
+    var comment: String?
 )

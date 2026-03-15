@@ -6,9 +6,18 @@ import jakarta.validation.constraints.Pattern
 import jakarta.validation.constraints.Size
 
 data class CreateBookRequest(
+    @field:NotBlank
+    @field:Pattern(regexp = "^\\d{13}$")
     val isbn: String,
+    @field:NotBlank
+    @field:Size(min = 1, max = 120)
     val title: String,
+    @field:NotBlank
+    @field:Size(min = 1, max = 80)
     val author: String,
+    @field:DecimalMin(value = "0.0", inclusive = false)
     val price: Double,
+    @field:NotBlank
+    @field:Pattern(regexp = "https?://.*")
     val image: String
 )

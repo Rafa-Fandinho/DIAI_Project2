@@ -1,4 +1,9 @@
 package pt.unl.fct.iadi.bookstore.controller.dto
 
-class PatchReviewRequest {
-}
+data class PatchReviewRequest(
+    @field:Min(1)
+    @field:Max(5)
+    val rating: Int?,
+    @field:Size(max = 500)
+    val comment: String?
+)

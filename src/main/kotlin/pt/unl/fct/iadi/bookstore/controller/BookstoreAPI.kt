@@ -14,18 +14,17 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestHeader
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestMethod
 import pt.unl.fct.iadi.bookstore.controller.dto.BookResponse
 import pt.unl.fct.iadi.bookstore.controller.dto.CreateBookRequest
 import pt.unl.fct.iadi.bookstore.controller.dto.CreateReviewRequest
 import pt.unl.fct.iadi.bookstore.controller.dto.ErrorResponse
 import pt.unl.fct.iadi.bookstore.controller.dto.PatchBookRequest
+import pt.unl.fct.iadi.bookstore.controller.dto.PatchReviewRequest
 import pt.unl.fct.iadi.bookstore.controller.dto.ReplaceBookRequest
+import pt.unl.fct.iadi.bookstore.controller.dto.ReplaceReviewRequest
 import pt.unl.fct.iadi.bookstore.controller.dto.ReviewResponse
-import javax.sound.midi.Patch
 
 interface BookstoreAPI {
 
@@ -43,7 +42,7 @@ interface BookstoreAPI {
         ]
     )
     @GetMapping("/books")
-    fun listBooks(): ResponseEntity<BookResponse>
+    fun listBooks(): ResponseEntity<List<BookResponse>>
 
     @Operation(
         summary = "Register a new book in the catalog",
@@ -66,7 +65,7 @@ interface BookstoreAPI {
                 content = [Content(schema = Schema(implementation = ErrorResponse::class))])
         ]
     )
-    @RequestMapping(value = ["/books"], consumes = ["application/json"], method = [RequestMethod.POST])
+    @PostMapping("/books")
     fun createBook(@Valid @RequestBody book: CreateBookRequest): ResponseEntity<Unit>
 
     @Operation(
@@ -88,8 +87,6 @@ interface BookstoreAPI {
     fun getBook(
         @Parameter(description = "ISBN of the book", required = true)
         @PathVariable isbn: String,
-        @RequestHeader(name = "Accept-Language", required = false)
-        language: String?
     ): ResponseEntity<BookResponse>
 
     @Operation(
@@ -109,11 +106,11 @@ interface BookstoreAPI {
                 content = [Content(schema = Schema(implementation = ErrorResponse::class))])
         ]
     )
-    @PatchMapping("/books/{isbn}")
+    @PutMapping("/books/{isbn}")
     fun replaceBook(
         @Parameter(description = "ISBN of the book", required = true)
         @PathVariable isbn: String,
-        //Might be missing to include how all parameters to be updated are necessary input
+        @Valid @RequestBody request: ReplaceBookRequest
     ): ResponseEntity<Unit>
 
     @Operation(
@@ -134,7 +131,8 @@ interface BookstoreAPI {
     @PatchMapping("/books/{isbn}")
     fun updateBook(
         @Parameter(description = "ISBN of the book", required = true)
-        @PathVariable isbn: String
+        @PathVariable isbn: String,
+        @Valid @RequestBody request: PatchBookRequest
     ): ResponseEntity<Unit>
 
     @Operation(
@@ -145,7 +143,7 @@ interface BookstoreAPI {
     @ApiResponses(
         value = [
             ApiResponse(
-                responseCode = "200",
+                responseCode = "204",
                 description = "Book deleted successfully",
                 content = [Content(schema = Schema(implementation = ReplaceBookRequest::class))]), //should be deleteBookRequest?
             ApiResponse(responseCode = "404", description = "Book not found",
@@ -177,7 +175,7 @@ interface BookstoreAPI {
     fun listReviews(
         @Parameter(description = "ISBN of the book", required = true)
         @PathVariable isbn: String
-    ): ResponseEntity<ReviewResponse>
+    ): ResponseEntity<List<ReviewResponse>>
 
     @Operation(
         summary = "Create a new review a book",
@@ -194,15 +192,16 @@ interface BookstoreAPI {
                 content = [Content(schema = Schema(implementation = ErrorResponse::class))])
         ]
     )
-    @GetMapping("/books/{isbn}")
+    @PostMapping("/books/{isbn}/reviews")
     fun createReview(
         @Parameter(description = "ISBN of the book", required = true)
-        @PathVariable isbn: String
+        @PathVariable isbn: String,
+        @Valid @RequestBody request: CreateReviewRequest
     ): ResponseEntity<Unit>
 
     @Operation(
-        summary = "List all reviews of a book",
-        operationId = "listReviews",
+        summary = "Replace the content of a review",
+        operationId = "replaceReview",
         tags = ["reviews"]
     )
     @ApiResponses(
@@ -210,16 +209,63 @@ interface BookstoreAPI {
             ApiResponse(
                 responseCode = "200",
                 description = "Review successfully replaced",
-                content = [Content(schema = Schema(implementation = CreateReviewRequest::class))]),
-            ApiResponse(responseCode = "404", description = "Book not found",
+                content = [Content(schema = Schema(implementation = ReplaceReviewRequest::class))]),
+            ApiResponse(responseCode = "404", description = "Review not found",
                 content = [Content(schema = Schema(implementation = ErrorResponse::class))])
         ]
     )
-    @GetMapping("/books/{isbn}")
+    @PutMapping("/books/{isbn}/reviews/{id}")
     fun replaceReview(
         @Parameter(description = "ISBN of the book", required = true)
-        @PathVariable isbn: String
+        @PathVariable isbn: String,
+        @Parameter(description = "Review ID", required = true)
+        @PathVariable id: Long
+    ): ResponseEntity<Unit>
+
+    @Operation(
+        summary = "Update the content of a review",
+        operationId = "updateReviews",
+        tags = ["reviews"]
+    )
+    @ApiResponses(
+        value = [
+            ApiResponse(
+                responseCode = "200",
+                description = "Review successfully updated",
+                content = [Content(schema = Schema(implementation = PatchReviewRequest::class))]),
+            ApiResponse(responseCode = "404", description = "Review not found",
+                content = [Content(schema = Schema(implementation = ErrorResponse::class))])
+        ]
+    )
+    @PatchMapping("/books/{isbn}/reviews/{id}")
+    fun updateReview(
+        @Parameter(description = "ISBN of the book", required = true)
+        @PathVariable isbn: String,
+        @Parameter(description = "Review ID", required = true)
+        @PathVariable id: Long,
+        @Valid @RequestBody request: PatchReviewRequest
+    ): ResponseEntity<Unit>
+
+    @Operation(
+        summary = "Delete a book review",
+        operationId = "deleteReview",
+        tags = ["reviews"]
+    )
+    @ApiResponses(
+        value = [
+            ApiResponse(
+                responseCode = "204",
+                description = "Review deleted successfully",
+                content = [Content(schema = Schema(implementation = ReplaceBookRequest::class))]), //should be deleteBookRequest?
+            ApiResponse(responseCode = "404", description = "Review not found",
+                content = [Content(schema = Schema(implementation = ErrorResponse::class))])
+        ]
+    )
+    @DeleteMapping("/books/{isbn}/reviews/{id}")
+    fun deleteReview(
+        @Parameter(description = "ISBN of the book", required = true)
+        @PathVariable isbn: String,
+        @Parameter(description = "Review ID", required = true)
+        @PathVariable id: Long
     ): ResponseEntity<Unit>
 }
-
-//The code here is a copy-paste of the slides, not part of the project
