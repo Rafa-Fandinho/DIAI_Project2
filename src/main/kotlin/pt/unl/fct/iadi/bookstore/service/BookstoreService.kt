@@ -61,7 +61,7 @@ class BookstoreService {
             request.image
         )
         if(isbn != request.isbn){
-            if(!books.containsKey(request.isbn)){
+            if(books.containsKey(request.isbn)){
                 books.putIfAbsent(request.isbn,book)
                 books.remove(isbn)
             }

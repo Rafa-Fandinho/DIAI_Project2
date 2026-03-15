@@ -103,6 +103,14 @@ interface BookstoreAPI {
                 responseCode = "200",
                 description = "Book updated successfully",
                 content = [Content(schema = Schema(implementation = ReplaceBookRequest::class))]),
+            ApiResponse(
+                responseCode = "201",
+                description = "Book created successfully",
+                headers = [Header(
+                    name = "Location",
+                    description = "URI of the newly created book",
+                    schema = Schema(type = "string", format = "uri")
+                )]),
             ApiResponse(responseCode = "400", description = "Invalid input, must include all mandatory fields",
                 content = [Content(schema = Schema(implementation = ErrorResponse::class))]),
             ApiResponse(responseCode = "404", description = "Book not found",
@@ -232,7 +240,7 @@ interface BookstoreAPI {
 
     @Operation(
         summary = "Update the content of a review",
-        operationId = "updateReviews",
+        operationId = "updateReview",
         tags = ["reviews"]
     )
     @ApiResponses(
@@ -263,8 +271,7 @@ interface BookstoreAPI {
         value = [
             ApiResponse(
                 responseCode = "204",
-                description = "Review deleted successfully",
-                content = [Content(schema = Schema(implementation = ReplaceBookRequest::class))]), //should be deleteBookRequest?
+                description = "Review deleted successfully"),
             ApiResponse(responseCode = "404", description = "Review not found",
                 content = [Content(schema = Schema(implementation = ErrorResponse::class))])
         ]

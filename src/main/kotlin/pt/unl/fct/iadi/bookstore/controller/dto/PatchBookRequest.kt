@@ -8,13 +8,13 @@ import jakarta.validation.constraints.Size
 data class PatchBookRequest(
     @field:NotBlank
     @field:Size(min = 1, max = 120)
-    val title: String,
+    val title: String?,
     @field:NotBlank
     @field:Size(min = 1, max = 80)
-    val author: String,
+    val author: String?,
     @field:Schema(exclusiveMinimum = true, minimum = "0.0")
-    val price: Double,
+    val price: Double?,
     @field:NotBlank
     @field:Pattern(regexp = "https?://.*")
-    val image: String
+    val image: String?
 )
