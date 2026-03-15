@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestHeader
+import org.springframework.web.bind.annotation.RequestMapping
 import pt.unl.fct.iadi.bookstore.controller.dto.BookResponse
 import pt.unl.fct.iadi.bookstore.controller.dto.CreateBookRequest
 import pt.unl.fct.iadi.bookstore.controller.dto.CreateReviewRequest
@@ -27,6 +28,7 @@ import pt.unl.fct.iadi.bookstore.controller.dto.ReplaceBookRequest
 import pt.unl.fct.iadi.bookstore.controller.dto.ReplaceReviewRequest
 import pt.unl.fct.iadi.bookstore.controller.dto.ReviewResponse
 
+@RequestMapping
 interface BookstoreAPI {
 
     @Operation(
@@ -225,6 +227,8 @@ interface BookstoreAPI {
                 responseCode = "200",
                 description = "Review successfully replaced",
                 content = [Content(schema = Schema(implementation = ReplaceReviewRequest::class))]),
+            ApiResponse(responseCode = "400", description = "Invalid input",
+                content = [Content(schema = Schema(implementation = ErrorResponse::class))]),
             ApiResponse(responseCode = "404", description = "Review not found",
                 content = [Content(schema = Schema(implementation = ErrorResponse::class))])
         ]
@@ -249,6 +253,8 @@ interface BookstoreAPI {
                 responseCode = "200",
                 description = "Review successfully updated",
                 content = [Content(schema = Schema(implementation = PatchReviewRequest::class))]),
+            ApiResponse(responseCode = "400", description = "Invalid input",
+                content = [Content(schema = Schema(implementation = ErrorResponse::class))]),
             ApiResponse(responseCode = "404", description = "Review not found",
                 content = [Content(schema = Schema(implementation = ErrorResponse::class))])
         ]
@@ -272,6 +278,8 @@ interface BookstoreAPI {
             ApiResponse(
                 responseCode = "204",
                 description = "Review deleted successfully"),
+            ApiResponse(responseCode = "400", description = "Invalid input",
+                content = [Content(schema = Schema(implementation = ErrorResponse::class))]),
             ApiResponse(responseCode = "404", description = "Review not found",
                 content = [Content(schema = Schema(implementation = ErrorResponse::class))])
         ]
