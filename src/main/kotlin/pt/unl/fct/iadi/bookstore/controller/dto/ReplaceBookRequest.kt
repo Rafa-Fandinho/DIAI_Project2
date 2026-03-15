@@ -1,5 +1,10 @@
 package pt.unl.fct.iadi.bookstore.controller.dto
 
+import io.swagger.v3.oas.annotations.media.Schema
+import jakarta.validation.constraints.NotBlank
+import jakarta.validation.constraints.Pattern
+import jakarta.validation.constraints.Size
+
 data class ReplaceBookRequest(
     @field:NotBlank
     @field:Size(min = 1, max = 120)
@@ -9,7 +14,7 @@ data class ReplaceBookRequest(
     @field:Size(min = 1, max = 80)
     val author: String,
 
-    @field:DecimalMin(value = "0.0", inclusive = false)
+    @field:Schema(exclusiveMinimum = true, minimum = "0.0")
     val price: Double,
 
     @field:NotBlank

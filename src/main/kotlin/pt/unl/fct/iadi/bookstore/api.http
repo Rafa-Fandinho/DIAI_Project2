@@ -1,0 +1,17 @@
+### list books
+GET http://localhost:8080/books
+
+### create book
+POST http://localhost:8080/books
+Content-Type: application/json
+
+{
+  "isbn": "123",
+  "title": "Test",
+  "author": "Author",
+  "price": 10.5,
+  "image": "image.jpg"
+}
+
+### get book
+GET http://localhost:8080/books/123
