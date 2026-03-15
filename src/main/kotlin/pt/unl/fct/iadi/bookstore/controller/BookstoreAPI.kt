@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestHeader
 import pt.unl.fct.iadi.bookstore.controller.dto.BookResponse
 import pt.unl.fct.iadi.bookstore.controller.dto.CreateBookRequest
 import pt.unl.fct.iadi.bookstore.controller.dto.CreateReviewRequest
@@ -87,6 +88,8 @@ interface BookstoreAPI {
     fun getBook(
         @Parameter(description = "ISBN of the book", required = true)
         @PathVariable isbn: String,
+        @RequestHeader(name = "Accept-Language", required = false)
+        language: String?
     ): ResponseEntity<BookResponse>
 
     @Operation(
@@ -219,7 +222,8 @@ interface BookstoreAPI {
         @Parameter(description = "ISBN of the book", required = true)
         @PathVariable isbn: String,
         @Parameter(description = "Review ID", required = true)
-        @PathVariable id: Long
+        @PathVariable id: Long,
+        @Valid @RequestBody request: ReplaceReviewRequest
     ): ResponseEntity<Unit>
 
     @Operation(
