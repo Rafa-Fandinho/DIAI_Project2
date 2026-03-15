@@ -1,6 +1,8 @@
 package pt.unl.fct.iadi.bookstore.domain
 import io.swagger.v3.oas.annotations.media.Schema
-import jakarta.validation.constraints.*
+import jakarta.validation.constraints.NotBlank
+import jakarta.validation.constraints.Pattern
+import jakarta.validation.constraints.Size
 
 data class Book(
     @field:NotBlank

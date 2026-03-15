@@ -97,14 +97,14 @@ class BookstoreService {
         if(!books.containsKey(isbn)){
             throw BookNotFoundException(isbn)
         }
-        val id = reviewIdGenerator.getAndIncrement()
+        val iid = reviewIdGenerator.getAndIncrement()
         val review = Review(
-            id,
+            iid,
             request.rating,
             request.comment
         )
         reviews[isbn]!!.add(review)
-        return id
+        return iid
     }
 
     fun replaceReview(isbn: String, id: Long, request: ReplaceReviewRequest){

@@ -52,8 +52,8 @@ class BookstoreController(private val service: BookstoreService) : BookstoreAPI 
     }
 
     override fun createReview(isbn: String, request: CreateReviewRequest): ResponseEntity<Unit> {
-        val id = service.createReview(isbn, request)
-        val location = URI.create("/books/$isbn/reviews/$id")
+        val iid = service.createReview(isbn, request)
+        val location = URI.create("/books/$isbn/reviews/$iid")
         return ResponseEntity.created(location).build()
     }
 
