@@ -225,7 +225,8 @@ interface BookstoreAPI {
         value = [
             ApiResponse(
                 responseCode = "200",
-                description = "Review successfully replaced"),
+                description = "Review successfully replaced",
+                content = [Content(schema = Schema(implementation = ReplaceReviewRequest::class))]),
             ApiResponse(responseCode = "400", description = "Invalid input",
                 content = [Content(schema = Schema(implementation = ErrorResponse::class))]),
             ApiResponse(responseCode = "404", description = "Review not found",
@@ -250,7 +251,8 @@ interface BookstoreAPI {
         value = [
             ApiResponse(
                 responseCode = "200",
-                description = "Review successfully updated"),
+                description = "Review successfully updated",
+                content = [Content(schema = Schema(implementation = PatchReviewRequest::class))]),
             ApiResponse(responseCode = "400", description = "Invalid input",
                 content = [Content(schema = Schema(implementation = ErrorResponse::class))]),
             ApiResponse(responseCode = "404", description = "Review not found",
