@@ -79,7 +79,7 @@ interface BookstoreAPI {
             ApiResponse(
                 responseCode = "200",
                 description = "Book found successfully",
-                content = [Content(schema = Schema(implementation = BookResponse::class))]),
+                content = [Content(mediaType = "application/json", schema = Schema(implementation = BookResponse::class))]),
             ApiResponse(responseCode = "404", description = "Book with this ISBN not found",
                 content = [Content(schema = Schema(implementation = ErrorResponse::class))]) //Need the language thing, no idea how to
         ]
@@ -127,6 +127,8 @@ interface BookstoreAPI {
                 responseCode = "200",
                 description = "Book updated successfully",
                 content = [Content(schema = Schema(implementation = PatchBookRequest::class))]),
+            ApiResponse(responseCode = "400", description = "Invalid input",
+                content = [Content(schema = Schema(implementation = ErrorResponse::class))]),
             ApiResponse(responseCode = "404", description = "Book not found",
                 content = [Content(schema = Schema(implementation = ErrorResponse::class))])
         ]
@@ -191,6 +193,8 @@ interface BookstoreAPI {
                 responseCode = "201",
                 description = "Review successfully created",
                 content = [Content(schema = Schema(implementation = CreateReviewRequest::class))]),
+            ApiResponse(responseCode = "400", description = "Invalid input",
+                content = [Content(schema = Schema(implementation = ErrorResponse::class))]),
             ApiResponse(responseCode = "404", description = "Book not found",
                 content = [Content(schema = Schema(implementation = ErrorResponse::class))])
         ]

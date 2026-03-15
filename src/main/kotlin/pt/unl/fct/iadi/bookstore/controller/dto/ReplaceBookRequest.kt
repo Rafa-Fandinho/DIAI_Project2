@@ -7,6 +7,9 @@ import jakarta.validation.constraints.Size
 
 data class ReplaceBookRequest(
     @field:NotBlank
+    @field:Schema(pattern = "^\\d{13}$")
+    val isbn: String,
+    @field:NotBlank
     @field:Size(min = 1, max = 120)
     val title: String,
 

@@ -54,13 +54,24 @@ class BookstoreService {
 
     fun replaceBook(isbn: String, request: ReplaceBookRequest){
         val book = Book(
-            isbn,
+            request.isbn,
             request.title,
             request.author,
             request.price,
             request.image
         )
-        books[isbn] = book
+        if(isbn != request.isbn){
+            if(!books.containsKey(request.isbn)){
+                books.putIfAbsent(request.isbn,book)
+                books.remove(isbn)
+            }
+            else{
+                throw BookAlreadyExistsException(request.isbn)
+            }
+        }
+        else{
+            books[isbn] = book
+        }
 
         reviews.putIfAbsent(isbn, mutableListOf())
     }
@@ -140,5 +151,3 @@ class BookstoreService {
 
     private fun Review.toResponse() = ReviewResponse(id,rating,comment)
 }
-
-//I'm unsure about which type of file this should be
